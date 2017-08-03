@@ -20,7 +20,7 @@ function orderFood() {
 		return "Whatever, con tal de comer, bienvenida hamburguesa";
 	}
 }
-console.log(orderFood(true, false, false));
+console.log(orderFood());
 
 
 /**

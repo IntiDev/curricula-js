@@ -17,7 +17,7 @@ Cuando tengas un programa que genere este patrón, define una variable size = 8 
 
 var str = "";
 var bool = false;
-var size = 8;
+var size = parseInt(prompt("Ingrese el tamaño del tablero"));
 
 for(var i = 0; i < size; i++){
 

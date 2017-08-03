@@ -6,7 +6,7 @@ Si la persona ingresa un dato que no es un número entero (por ejemplo: un strin
 
 
 function agesAndStages(age) {
-    if (age % 1 == 0 && age > 0) {
+    if (age > 0) {
         if (age >= 1 && age <= 3) {
             alert('Toddler');
         } else if (age > 3 && age <= 5) {

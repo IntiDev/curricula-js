@@ -19,7 +19,6 @@ while (number <= 100) {
  }
  number++;
 }
-
 * Segunda forma
 for(var number = 1; number <= 100; number++) {
     if (number % 3 === 0) {

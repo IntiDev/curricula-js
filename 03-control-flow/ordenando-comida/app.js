@@ -1,22 +1,43 @@
-/*2. Ordenando comida
-Imagina que estás pidiendo comida en un restaurante. Tu plato favorito es ceviche, así que lo elegirías si está en el menú. Si no hay ceviche, elegirías tacos al pastor. Si eso no está, te irías por empanada chilena. En el caso raro que ninguna de esas opciones esté disponible, te irías por una hamburguesa. Escribe una función, que de acuerdo a la disponibilida de los platos en el menú, decida qué ordenar.*/
+/**
+ * Imagina que estás pidiendo comida en un restaurante. Tu plato favorito es ceviche, así que lo elegirías si está en el menú.
+ * Si no hay ceviche, elegirías tacos al pastor. Si eso no está, te irías por empanada chilena.
+ * En el caso raro que ninguna de esas opciones esté disponible, te irías por una hamburguesa.
+ * Escribe una función, que de acuerdo a la disponibilida de los platos en el menú, decida qué ordenar.
+ */
 
-//aquí Iván no se si es así de básico o algo un poco más elaborado, ahí me das tu opinión
+function orderFood() {
+	var ceviche = true;
+	var tacos = false;
+	var empanada = false;
 
-function food(){
-  var ceviche = true;
-  var tacos = false;
-  var empanada = false;
-  
-  if (ceviche){
-    console.log("Awesome! justo lo que necesitaba");
-  }else if (tacos){
-    console.log("Nada mal unos tacos al pastor");
-  }else if (empanada){
-    console.log("Bueno, empanada del fin del mundo no está mal");
-  }else{
-    console.log("Whatever, con tal de comer, bienvenida hamburguesa")
-  }
+	if (ceviche) {
+		return "Awesome! justo lo que necesitaba";
+	} else if (tacos){
+		return "Nada mal unos tacos al pastor";
+	} else if (empanada) {
+		return "Bueno, empanada del fin del mundo no está mal";
+	} else {
+		return "Whatever, con tal de comer, bienvenida hamburguesa";
+	}
 }
+console.log(orderFood(true, false, false));
 
-food();
+
+/**
+* Esta es una segunda opción del desarrollo del ejericicio.
+* La primera opción estaba basada en la explicación del video if...else
+*
+
+function orderFood(isCevicheAvailable, isTacoAvailable, isEmpanadaAvailable) {
+	if (isCevicheAvailable) {
+		return "Awesome! justo lo que necesitaba";
+	} else if (isTacoAvailable){
+		return "Nada mal unos tacos al pastor";
+	} else if (isEmpanadaAvailable) {
+		return "Bueno, empanada del fin del mundo no está mal";
+	} else {
+		return "Whatever, con tal de comer, bienvenida hamburguesa";
+	}
+}
+console.log(orderFood(true, false, false));
+*/

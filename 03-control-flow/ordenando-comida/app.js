@@ -12,7 +12,7 @@ function orderFood() {
 
 	if (ceviche) {
 		return "Awesome! justo lo que necesitaba";
-	} else if (tacos){
+	} else if (tacos) {
 		return "Nada mal unos tacos al pastor";
 	} else if (empanada) {
 		return "Bueno, empanada del fin del mundo no está mal";

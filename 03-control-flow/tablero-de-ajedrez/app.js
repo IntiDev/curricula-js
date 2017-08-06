@@ -1,41 +1,37 @@
-/*
-Crea un programa que cree un string que represente una cuadrícula de 8x8, usando el salto de línea como separador. En cada posición de la cuadrícula debe haber un espacio o un carácter "#". Los caracteres deberían formar un tablero de ajedrez.
+/**
+* Crea un programa que cree un string que represente una cuadrícula de 8x8, usando el salto de línea como separador.
+* En cada posición de la cuadrícula debe haber un espacio o un carácter "#".
+* Los caracteres deberían formar un tablero de ajedrez.
+* Pasar ese string a console.log debería mostrar algo como esto:
 
-Pasar ese string a console.log debería mostrar algo como esto:
+ # # # #
+# # # #
+ # # # #
+# # # #
+ # # # #
+# # # #
+ # # # #
+# # # #
 
- # # # #
-# # # #
- # # # #
-# # # #
- # # # #
-# # # #
- # # # #
-# # # #
-Cuando tengas un programa que genere este patrón, define una variable size = 8 y cambia el programa de tal manera que trabaje para cualquier tamaño, que sea proporcionado por un prompt() produciendo una cuadrícula del ancho y alto dado.
-
+* Cuando tengas un programa que genere este patrón, define una variable size = 8
+* y cambia el programa de tal manera que trabaje para cualquier tamaño, que sea proporcionado por un prompt()
+* produciendo una cuadrícula del ancho y alto dado.
+*
 */
 
-var str = "";
-var bool = false;
+var result = "";
 var size = parseInt(prompt("Ingrese el tamaño del tablero"));
 
-for(var i = 0; i < size; i++){
+for (var column = 0; column < size; column++) {
 
-	for(var j = 0; j < size; j++){
-
-		if(bool = !bool){
-			str += "#";
-		}else{
-		str += " ";
+	for (var row = 0; row < size; row++) {
+		
+		if ((row + column) % 2 == 0) {
+			result += " ";
+		} else {
+			result += "#";
 		}
 	}
-
-	if(size % 2 == 0 && i % 2 == 0){
-		bool = true;
-	}else{
-		bool = false;
-	}
-	str += "\n";
+	result += "\n";
 }
-
-console.log(str);
+console.log(result);

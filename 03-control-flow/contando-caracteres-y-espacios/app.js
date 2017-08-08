@@ -1,5 +1,4 @@
 /**
-*
 * Crea una web que pida, por medio de un prompt(), una frase al usuario.
 * La web debe presentar un mensaje que diga: el número de caracteres y de espacios que componen el string ingresado.
 * En la consola, debe aparecer cada caracter impreso en una línea separada, en mayúscula.

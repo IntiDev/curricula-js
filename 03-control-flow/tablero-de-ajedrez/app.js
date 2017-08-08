@@ -13,10 +13,7 @@
  # # # #
 # # # #
 
-* Cuando tengas un programa que genere este patrón, define una variable size = 8
-* y cambia el programa de tal manera que trabaje para cualquier tamaño, que sea proporcionado por un prompt()
-* produciendo una cuadrícula del ancho y alto dado.
-*
+* Cuando tengas un programa que genere este patrón, define una variable size = 8 y cambia el programa de tal manera que trabaje para cualquier tamaño, que sea proporcionado por un prompt() produciendo una cuadrícula del ancho y alto dado.
 */
 
 var result = "";

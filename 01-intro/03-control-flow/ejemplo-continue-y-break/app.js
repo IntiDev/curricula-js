@@ -1,13 +1,16 @@
-/**
-* Crea dos funciones, add y multiply. Cada una debe tomar dos argumentos. La función add debe sumar sus argumentos y devolver el resultado. La funcion multiply debe multiplicar sus argumentos. Usando solamente estas dos funciones, resuelva este simple problema matemático: 36325 * (9824 + 777).
-*/
+// Break
+for (var i = 0; i < 10; i++) {
 
-function add(num1, num2) {
-	return num1 + num2;
+  if (i === 3) {
+    break;
+  }
+  document.write(i);
 }
 
-function multiply(num1, num2) {
-	return num1 * num2;	
+// Continue
+for (var i = 0; i < 10; i++) {
+  if (i === 3) {
+    continue; 
+  }
+  document.write(i);
 }
-
-console.log(multiply(36325, add(9824,777)));

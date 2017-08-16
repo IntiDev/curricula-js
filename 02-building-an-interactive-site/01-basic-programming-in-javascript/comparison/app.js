@@ -9,7 +9,7 @@ function areArraysSame(arrayOne, arrayTwo) {
   if (arrayOne.length !== arrayTwo.length) {
     return false;
   }
-  
+
   for (var i = 0; i < arrayOne.length; i++) {
 
     if (arrayOne[i] !== arrayTwo[i]) {

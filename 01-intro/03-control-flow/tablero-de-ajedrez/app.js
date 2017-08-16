@@ -23,16 +23,16 @@ var result = '';
 var size = parseInt(prompt('Ingrese el tamaño del tablero'));
 
 for (var row = 0; row < size; row++) {
-  
+
   for (var column = 0; column < size; column++) {
-    
+
     if ((row + column) % 2 == 0) {
       result += ' ';
     } else {
       result += '#';
     }
   }
-  
+
   result += '\n';
 }
 console.log(result);

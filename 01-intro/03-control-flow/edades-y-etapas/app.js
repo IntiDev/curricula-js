@@ -5,23 +5,23 @@
 
 
 function agesAndStages(age) {
-    if (age > 0) {
-        if (age >= 1 && age <= 3) {
-            alert('Toddler');
-        } else if (age > 3 && age <= 5) {
-            alert('Preschooler');
-        } else if (age > 5 && age <= 12) {
-            alertg('Gradeschooler');
-        } else if (age > 12 && age <= 18) {
-            alert('Teenager');
-        } else if (age > 18 && age <= 21) {
-            alert('Young Adult');
-        } else {
-            alert('Adult');
-        }
+  if (age > 0) {
+    if (age >= 1 && age <= 3) {
+      alert('Toddler');
+    } else if (age > 3 && age <= 5) {
+      alert('Preschooler');
+    } else if (age > 5 && age <= 12) {
+      alertg('Gradeschooler');
+    } else if (age > 12 && age <= 18) {
+      alert('Teenager');
+    } else if (age > 18 && age <= 21) {
+      alert('Young Adult');
     } else {
-        alert('Debes ingresar una edad válida');
+      alert('Adult');
     }
+  } else {
+    alert('Debes ingresar una edad válida');
+  }
 }
 
 var age = parseInt(prompt('¿Cuál es tu edad?'));

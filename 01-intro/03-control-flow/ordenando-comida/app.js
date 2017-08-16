@@ -6,19 +6,19 @@
  */
 
 function orderFood() {
-	var ceviche = true;
-	var tacos = false;
-	var empanada = false;
+  var ceviche = true;
+  var tacos = false;
+  var empanada = false;
 
-	if (ceviche) {
-		return "Awesome! justo lo que necesitaba";
-	} else if (tacos) {
-		return "Nada mal unos tacos al pastor";
-	} else if (empanada) {
-		return "Bueno, empanada del fin del mundo no está mal";
-	} else {
-		return "Whatever, con tal de comer, bienvenida hamburguesa";
-	}
+  if (ceviche) {
+    return "Awesome! justo lo que necesitaba";
+  } else if (tacos) {
+    return "Nada mal unos tacos al pastor";
+  } else if (empanada) {
+    return "Bueno, empanada del fin del mundo no está mal";
+  } else {
+    return "Whatever, con tal de comer, bienvenida hamburguesa";
+  }
 }
 console.log(orderFood());
 

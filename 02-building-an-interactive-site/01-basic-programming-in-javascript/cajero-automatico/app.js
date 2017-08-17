@@ -11,52 +11,40 @@ Crea un programa que un cajero automático pueda utilizar para determinar el nú
 
 */
 
-/*
-
-* Prueba:
-
 var cajero = {
-  100: 100,
-  50: 50,
-  20: 200,
-  10: 300,
+  1: 800,
   5: 500,
-  1: 800
-}
-
-var cantidad = 250;
-var billetes = Object.keys(cajero);
-var value = 0;
-while (cantidad > 0) {
-  var residuo = cantidad % billetes[value];
-  if (residuo < billetes[value]) {
-    cajero[billetes[value]]-1;
-    value++
-  }
-}
-
-console.log(billetes)
-
-var cajero = {
-  100: 100,
-  50: 50,
-  20: 200,
   10: 300,
-  5: 500,
-  1: 800
+  20: 200,
+  50: 50,
+  100: 100
 }
-var cantidad = 250;
+var cantidad = parseInt(prompt('¿Cuál es tu número?'));
 var value = 0;
-var residuo;
+var residuo = 0;
+var billetes = Object.keys(cajero).reverse();
+
+var billetesUsados = 0;
+
 while (cantidad > 0) {
-  residuo = cantidad % billetes[value];
-  
-  if (residuo < billetes[value]) {
-    value++;
+
+  if (value === 5) {
+
+    break;
+  } 
+
+  if (cantidad >= billetes[value]) {
+
+    residuo = cantidad % billetes[value];
+    billetesUsados = (cantidad - residuo) / billetes[value];
+    cantidad = residuo;
+
   }
-	cajero[billetes[value]]--;
+
+  cajero[billetes[value]] = cajero[billetes[value]] - billetesUsados;
+  billetesUsados = 0;
+  value++;
 }
+
 console.log(cantidad);
-console.log(cajero);
-
-*/
+console.log(cajero); 

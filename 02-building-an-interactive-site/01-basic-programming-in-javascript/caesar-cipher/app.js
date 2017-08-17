@@ -21,7 +21,9 @@ for (var i = 0; i < word.length; i++) {
   
     var cipherLetter = String.fromCharCode((asciiTemp - 65 + 33) % 26 + 65);
     cipherWord += cipherLetter;
+    
   }else{
+    
     cipherWord += ' ';
   }
 }

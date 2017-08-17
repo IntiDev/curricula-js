@@ -15,13 +15,13 @@ for (var i  = card.length -1; i >= 0 ; i--) {
 var total = 0;
 
 for (var i = 0; i < cardArray.length; i++) {
-  
+
   if (i % 2 !== 0) {
-    
+
     var temp = cardArray[i]*2;
-    
+
     if (temp >= 10) {
-      
+
       temp = (temp % 10) + parseInt(temp/10);
     }
     
@@ -31,7 +31,7 @@ for (var i = 0; i < cardArray.length; i++) {
     
     total += cardArray[i];
   }
-  
-}
 
+}
+console.log(total);
 console.log((total%10 === 0) ? 'Válido' : 'No válido')

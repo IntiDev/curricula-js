@@ -19,6 +19,7 @@ var cajero = {
   50: 50,
   100: 100
 }
+
 var cantidad = parseInt(prompt('¿Cuál es tu número?'));
 var value = 0;
 var residuo = 0;

@@ -2,8 +2,6 @@
 // escribir aquí tu código
 
 
-
-
 function esPrimo (n) {
     if (n == 1)
         return true;

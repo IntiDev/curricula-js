@@ -1,0 +1,11 @@
+.asiento{
+	border-radius: 80px 20px;
+	background-color: #2EFE2E;
+	font-weight: bold;
+}
+
+input{
+	border:none;
+	height: 20px;
+    width: 160px;
+}

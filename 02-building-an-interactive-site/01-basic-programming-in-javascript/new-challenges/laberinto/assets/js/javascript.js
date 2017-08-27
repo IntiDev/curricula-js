@@ -1,136 +1,143 @@
-function Player (maze) {
-    this.x = maze.startX;
-    this.y = maze.startY;
-    this.orientation = maze.startOrientation;
-    this.maze = maze;
-
-    this.turnLeft = function () {
-
-    };
-    this.turnRight  = function () {
-
-    };
-    this.moveForward = function () {
-
-    };
-    this.canMoveForward = function () {
-
-    };
-    this.exitMaze = function () {
-
-    };
+function isWall (maze, x, y) // preguntar si (x,y) representa un muro, es decir  '*'
+{
+    return maze.matrix[x][y] == "*";
+}
+function isSpace (maze, x, y) // preguntar si (x,y) representa un espacio vacio, es decir  '_'
+{
+    return maze.matrix[x][y] == "_";
+}
+function isEnd (maze, x, y) // preguntar si (x,y) representa la salida del laberinto, es decir 'W'
+{
+    return x == maze.endX && y == maze.endY;
 }
 
-function Maze (matrix){
-    this.width = null;
-    this.height = null;
-    this.startX = null;
-    this.startY = null;
-    this.endX = null;
-    this.endY = null;
-    this.startOrientation = null;
-
-    this.matrix = matrix;
-    this.width = matrix.length;
-    this.height = matrix[0].length;
-
-    this.isInBounds = function () {
-
+function turnLeft (player)  //  rotar a la izquierda
+{
+    const lefts = {
+        up: "left",
+        right: "up",
+        down: "right",
+        left: "down"
     };
-    this.isValidDirection = function () {
-
-    };
-    this.canMove= function () {
-
-    };
+    player.orientation = lefts[player.orientation];
+    setStyleAt(player.domElements, player.x, player.y, player.orientation);
 }
 
-function MazeInterface (player, maze) {
-    this.player =  player;
-    this.maze = maze;
+function turnRight (player) //  rotar a la derecha
+{
+    const rights = {
+        up: "right",
+        right: "down",
+        down: "left",
+        left: "up"
+    };
+    player.orientation = rights[player.orientation];
+    setStyleAt(player.domElements,  player.x, player.y, player.orientation);
+}
+function moveForward(player)  //  mover una posición hacia adelante en la dirección de player.direction
+{
+    switch(player.orientation) {
+        case "left": // left
+            move(player, 0, -1, StyleEnum.LEFT);
+            break;
+        case "up": // up
+            move(player, -1, 0, StyleEnum.UP);
+            break;
+        case "right": // right
+            move(player, 0, 1, StyleEnum.RIGHT);
+            break;
+        case "down": // down
+            move(player, 1, 0, StyleEnum.DOWN);
+            break;
+    }
+}
+function move (player, a, b, direction) {
+    const map = player.maze.matrix;
+    if( isWall (player.maze, player.x + a, player.y + b) ){
+        // stop !
 
-    this.renderMaze = function () {
-        let map = this.maze.matrix;
-        let divElement = document.getElementById('table_container');
-        let tableElement = document.createElement('table');
-        for (let i = 0; i < map.length; i++) {
-            let rowElement = document.createElement('tr');
-            for (let j = 0; j < map[i].length; j++) {
-                let cellElement = document.createElement('td');
-                if (map[i][j] == "*") {
-                    cellElement.setAttribute('class', 'block');
-                } else if (map[i][j] == "_") {
-                    cellElement.setAttribute('class', 'space')
-                } else if (map[i][j] == "o") {
-                    this.player.startX = i;
-                    this.player.startY = j;
-                    this.player.startOrientation = arrowKeyboard.UP;
-                    cellElement.setAttribute('class', 'arrow_w');
-                } else if (map[i][j] == "W") {
-                    this.player.endX = i;
-                    this.player.endY = j;
-                    cellElement.setAttribute('class', 'final');
-                }
-                cellElement.setAttribute("id", i + "," + j);
-                let div = document.createElement("div");
-                div.setAttribute("class", "flechas");
-                cellElement.appendChild(div);
-                rowElement.appendChild(cellElement);
+    }
+    else if ( isSpace (player.maze, player.x + a, player.y + b) ){
+        setStyleAt(player.domElements, player.x, player.y, StyleEnum.EMPTY);
+        player.x = player.x + a;
+        player.y = player.y + b;
+         setStyleAt(player.domElements, player.x, player.y, direction);
+    }
+
+    else if(  isEnd (player.maze, player.x + a, player.y + b) ){
+         setStyleAt(player.domElements, player.x, player.y, StyleEnum.EMPTY);
+        player.x = player.x + a;
+        player.y = player.y + b;
+        alert("Ganaste...!");
+    }
+}
+
+
+function exitMaze (player) // Algoritmo de búsqueda para encontrar un camino de salida para un laberinto cualquiera
+{
+    let timer = setInterval( () => {
+        let px = player.x;
+        let py = player.y;
+
+        turnLeft(player);
+        moveForward(player);
+
+        if (player.x == px && player.y == py) {
+            turnRight(player);
+            moveForward(player);
+        }
+        if (player.x == px && player.y == py) {
+            turnRight(player);
+            moveForward(player);
+        }
+        if (isEnd(player.maze, player.x, player.y)) {
+            clearInterval(timer);
+        }
+    }, 200);
+}
+
+function renderMaze (player) // dibujar laberinto
+{
+    let map = player.maze.matrix;
+    let divElement = document.getElementById('table_container');
+    divElement.innerHTML = '';
+    let tableElement = document.createElement('table');
+
+    player.domElements = [];
+    for (let i = 0; i < map.length; i++) {
+        let rowElement = document.createElement('tr');
+        player.domElements[i] = [];
+        for (let j = 0; j < map[i].length; j++) {
+            let cellElement = document.createElement('td');
+            if (map[i][j] == "*") {
+                cellElement.setAttribute('class', 'block');
+            } else if (map[i][j] == "_") {
+                cellElement.setAttribute('class', 'space')
+            } else if (map[i][j] == "o") {
+                player.maze.startX = i;
+                player.maze.startY = j;
+                player.x = i;
+                player.y = j;
+                player.orientation = StyleEnum.UP;
+                player.maze.startOrientation = StyleEnum.UP;
+                cellElement.setAttribute('class', StyleEnum.UP);
+            } else if (map[i][j] == "W") {
+                player.maze.endX = i;
+                player.maze.endY = j;
+                cellElement.setAttribute('class', 'final');
             }
-            tableElement.appendChild(rowElement);
+            rowElement.appendChild(cellElement);
+            player.domElements[i][j] = cellElement;
         }
-        divElement.appendChild(tableElement);
-
-    };
-
-    this.resetEvent = function () {
-
-    };
-
-    this.moveEvent = function () {
-
-    };
-
-    this.rightEvent = function () {
-
-    };
-
-    this.leftEvent = function () {
-
-    };
-    document.getElementById("left").onclick = this.leftEvent;
-    document.getElementById("right").onclick = this.rightEvent;
-    document.getElementById("move").onclick = this.moveEvent;
-    document.addEventListener("keydown", keydownEvent);
-
-    //keycode de las arrowKeyboard
-    const arrowKeyboard = {
-        LEFT: 37,
-        UP: 38,
-        RIGHT: 39,
-        DOWN: 40
-    };
-
-    function keydownEvent(e) {
-        switch(e.keyCode) {
-            case arrowKeyboard.UP:
-                move(-1, 0, e.keyCode);
-                break;
-            case arrowKeyboard.DOWN:
-                move(1, 0, e.keyCode);
-                break;
-            case arrowKeyboard.LEFT:
-                move(0, -1, e.keyCode);
-                break;
-            case arrowKeyboard.RIGHT:
-                move(0, 1, e.keyCode);
-                break;
-        }
+        tableElement.appendChild(rowElement);
     }
+    divElement.appendChild(tableElement);
+}
 
-    function move (a, b, key) {
-
-    }
+function setStyleAt (domElements, x, y, style) // establecer estilo en la posición x, y
+{
+    let cellElement = domElements[x][y];
+    cellElement.setAttribute('class', style);
 }
 
 const mazeMap = [
@@ -146,7 +153,48 @@ const mazeMap = [
     "*o*__*________**W*",
     "******************"
 ];
-let maze = new Maze(mazeMap) ;
-let player = new Player(maze);
-let interface = new MazeInterface (player, maze);
-interface.renderMaze () ;
+
+const StyleEnum = {
+    LEFT: "left",
+    UP: "up",
+    RIGHT: "right",
+    DOWN: "down",
+    EMPTY: "space",
+    BLOCK: "block"
+};
+
+
+var maze = {
+    matrix: mazeMap, // representa el mapa del laberinto
+    startX: undefined,  // posición x inicial del laberinto
+    startY: undefined,  // posición y inicial del laberinto
+    endX: undefined,  // posición x que representa la salida
+    endY: undefined,// posición y que representa la salida
+    startOrientation: undefined // orientación inicial
+};
+
+var player  = {
+    x: undefined, // posición x actual del jugador
+    y: undefined, // posición x actual del jugador
+    orientation: undefined, // orientación actual del jugador,
+    maze : maze,
+    domElements : []
+};
+
+renderMaze (player) ;
+
+document.getElementById("start").onclick = () => {
+    renderMaze(player);
+};
+document.getElementById("left").onclick = () => {
+    turnLeft(player);
+};
+document.getElementById("right").onclick = () => {
+    turnRight(player);
+};
+document.getElementById("move").onclick = () => {
+    moveForward(player);
+};
+document.getElementById("exit").onclick = () => {
+    exitMaze(player);
+};

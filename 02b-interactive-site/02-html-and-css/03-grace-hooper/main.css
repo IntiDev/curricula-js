@@ -1,0 +1,21 @@
+.left {
+  display: block;
+  width: 70%;
+}
+
+.right {
+  float: right;
+  width: 30%;
+}
+
+.style-table {
+  border: 1px solid black;
+  margin: 0 auto;
+}
+
+.style-table tr:first-child {
+  text-align: center;
+}
+.style-table th {
+  text-align: left;
+}

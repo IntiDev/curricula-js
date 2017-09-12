@@ -15,15 +15,16 @@ function imprimir(n) {
     var i = k;
     var content = '';
 
-    for (j = 1; j <= 2 * i + 1; j++){
-      if (j == i + 1)
-        content +=  j;
-      else
-        if (j == 1 || j ==  2 * i + 1)
+    for (j = 1; j <= 2 * i + 1; j++) {
+      if (j == i + 1) {
+        content += j;
+      } else {
+        if (j == 1 || j == 2 * i + 1)
           content += '1';
-      else
-        content += ' ';
-      var sp = espacios (n - (i + 1));
+        else
+          content += ' ';
+      }
+      var sp = espacios(n - (i + 1));
     }
 
     console.log(sp + content);
@@ -32,4 +33,3 @@ function imprimir(n) {
 
 var n = prompt();
 imprimir(n);
-

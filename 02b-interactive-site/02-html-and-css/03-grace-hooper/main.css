@@ -1,10 +1,15 @@
+* {
+  font-family: sans-serif;
+}
+
 .left {
-  display: block;
-  width: 70%;
+  display: inline-block;
+  width: 69%;
+  font-size: 14px;
 }
 
 .right {
-  float: right;
+  display: inline-block;
   width: 30%;
 }
 
@@ -16,6 +21,7 @@
 .style-table tr:first-child {
   text-align: center;
 }
+
 .style-table th {
   text-align: left;
 }

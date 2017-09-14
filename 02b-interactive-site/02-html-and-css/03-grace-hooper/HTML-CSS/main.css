@@ -1,27 +1,81 @@
 * {
   font-family: sans-serif;
+  margin:  0;
+}
+
+body {
+  padding: 22px 24px;
+}
+
+h1{
+  margin-top: 0;
+  margin-bottom:  4px;
+  font-family: 'Georgia';
+  font-weight: normal;
+  font-size: 29px;
+}
+
+p {
+  margin-bottom: 10px;
 }
 
 .left {
   display: inline-block;
-  width: 69%;
+  width: 75%;
   font-size: 14px;
+  line-height: 1.6;
+  vertical-align: top;
+  margin-right: 0.48%;
+  margin-top: 15px;
 }
 
 .right {
+  margin-top: 22px;
   display: inline-block;
-  width: 30%;
+  vertical-align: top;
+  width: 24.2%;
 }
 
 .style-table {
-  border: 1px solid black;
+  border: 1px solid #a2a9b1;
   margin: 0 auto;
+  font-size:  13px;
+  width:  100%;
+  padding: 2px;
+  font-family:  sans-serif;
+  background: #f8f9fa;
 }
 
 .style-table tr:first-child {
   text-align: center;
 }
 
-.style-table th {
+.style-table tr:first-child p {
+  font-size:  12px;
+  margin-top: 0;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.style-table img[src="img/grace-hopper.png"] {
+  width:  220px;
+}
+
+.style-table thead th {
+  background-color: #B0C4DE;
+  font-size:  15px;
+  padding:  5px;
+}
+
+.style-table tbody th {
   text-align: left;
+  font-size:  12px;
+  font-weight: bold;
+  padding:  0 12px 0 0;
+}
+
+.style-table tbody td {
+  font-size:  12px;
+  padding:  1px;
+  line-height:  1.6;
 }

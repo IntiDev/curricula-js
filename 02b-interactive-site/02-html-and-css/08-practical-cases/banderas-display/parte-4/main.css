@@ -1,0 +1,14 @@
+/*Preguntar por qué no aparece el margin-top*/
+.yellow, .red {  
+  margin: 10px;
+  padding: 10px;
+  display: inline;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.red {
+  background-color: red;
+}

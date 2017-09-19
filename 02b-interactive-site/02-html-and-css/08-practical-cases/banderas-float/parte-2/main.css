@@ -1,0 +1,22 @@
+.container {
+  width: 40%;
+  border: 1px solid gray;
+}
+
+.yellow, .blue, .red {
+  height: 100px;
+  width: 25%;
+  float: left;
+}
+
+.yellow {
+  background-color: #FFFF00;
+}
+
+.blue {
+  background-color: #0000BA;
+}
+
+.red {
+  background-color: #DC0000;
+}

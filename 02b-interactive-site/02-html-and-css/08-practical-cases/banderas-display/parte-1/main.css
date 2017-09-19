@@ -1,0 +1,14 @@
+/*Preguntar si lo pones así o puedes llamarlo por la etiqueta*/
+.yellow, .red {
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.red {
+  background-color: red;
+}

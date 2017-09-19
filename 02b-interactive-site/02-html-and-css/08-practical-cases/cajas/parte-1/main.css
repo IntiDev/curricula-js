@@ -1,0 +1,21 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+div {
+  width: 200px;
+  height: 200px;
+}
+
+.tomato {
+  background-color: tomato;
+}
+
+.steelblue {
+  background-color: steelblue;
+}
+
+.yellowgreen {
+  background-color: yellowgreen;
+}

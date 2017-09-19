@@ -1,0 +1,34 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+div {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+}
+
+.tomato {
+  background-color: tomato;
+  left: 0px;
+  top: 0px;
+}
+
+.steelblue {
+  background-color: steelblue;
+  right: 0px;
+  top: 0px;
+}
+
+.yellowgreen {
+  background-color: yellowgreen;
+  left: 0px;
+  bottom: 0px;
+}
+
+.yellow {
+  background-color: yellow;
+  right: 0px;
+  bottom: 0px;
+}

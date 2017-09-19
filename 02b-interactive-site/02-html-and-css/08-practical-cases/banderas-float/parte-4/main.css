@@ -1,0 +1,39 @@
+.container {
+width: 40%;
+border: 1px solid gray;
+}
+
+/*Preguntar si creo una nueva clase o lo añado como propiedad a container y le cambio el nombre a 'clearfix' o solo lo añado como propiedad a container*/
+
+.clearfix {
+  overflow: hidden;
+}
+
+/*
+
+Otra forma de clearfix
+
+.clearfix:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+*/
+
+.yellow, .blue, .red {
+  height: 100px;
+  width: 25%;
+  float: left;
+}
+
+.yellow {
+  background-color: #FFFF00;
+}
+
+.blue {
+  background-color: #0000BA;
+}
+
+.red {
+  background-color: #DC0000;
+}

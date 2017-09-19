@@ -1,15 +1,69 @@
-class Player {
-    constructor (maze) {
+'use strict';
+
+
+const StyleEnum = {
+    LEFT: "left",
+    UP: "up",
+    RIGHT: "right",
+    DOWN: "down",
+    EMPTY: "space",
+    BLOCK: "block"
+};
+
+const mazeMap = [
+    "******************",
+    "*_________*______*",
+    "*_*****_____******",
+    "*______***__*__*_*",
+    "***_*____*____**_*",
+    "*___*____**__*___*",
+    "*_********__**_*_*",
+    "*____*______*__*_*",
+    "*_**_*__*****_**_*",
+    "*o*__*________**W*",
+    "******************"
+];
+
+var maze = {
+    matrix: undefined, // representa el mapa del laberinto
+    startX: undefined,  // posición x inicial del laberinto
+    startY: undefined,  // posición y inicial del laberinto
+    endX: undefined,  // posición x que representa la salida
+    endY: undefined,// posición y que representa la salida
+    startOrientation: undefined, // orientación inicial,
+
+    init : function (matrix) {       
+        this.matrix = matrix;
+        this.width = matrix.length;
+        this.height = matrix[0].length;
+    },
+
+    isWall : function (x, y) {
+        return this.matrix[x][y] == "*";
+    },
+    isSpace: function (x, y) {
+        return this.matrix[x][y] == "_";
+    },
+    isEnd: function (x, y) {
+        return x == this.endX && y == this.endY;
+    },
+    isInBounds: function (x, y) {
+        return x > 0 && x <= this.width && y > 0 && y <= this.height;
+    },
+};
+
+var player  = {
+    x: undefined, // posición x actual del jugador
+    y: undefined, // posición x actual del jugador
+    orientation: undefined, // orientación actual del jugador,
+    interface: undefined,
+    maze : undefined,
+    domElements : [],
+    init: function (maze, mazeInterface) {
         this.maze = maze;
-        this.x = maze.startX;
-        this.y = maze.startY;
-        this.orientation = maze.startOrientation;
-        this.interface = null;
-    }
-    setInterface (mazeInterface) {
         this.interface = mazeInterface;
-    }
-    turnLeft() {
+    },
+    turnLeft: function () {
         const lefts = {
             up: "left",
             right: "up",
@@ -18,9 +72,8 @@ class Player {
         };
         this.orientation = lefts[this.orientation];
         this.interface.setStyleAt(this.x, this.y, this.orientation);
-
-    }
-    turnRight() {
+    }, 
+    turnRight: function() {
         const rights = {
             up: "right",
             right: "down",
@@ -29,9 +82,8 @@ class Player {
         };
         this.orientation = rights[this.orientation];
         this.interface.setStyleAt(this.x, this.y, this.orientation);
-
-    }
-    move () {
+    },
+    move: function () {
         switch(this.orientation) {
             case "left": // left
                 this.moveForward(0, -1, StyleEnum.LEFT);
@@ -46,8 +98,8 @@ class Player {
                 this.moveForward(1, 0, StyleEnum.DOWN);
                 break;
         }
-    }
-    moveForward (a, b, direction) {
+    },
+    moveForward: function (a, b, direction) {
         if (!this.maze.isInBounds(this.x + a, this.y + b)) {
             // break the app!
             return;
@@ -71,9 +123,9 @@ class Player {
             this.y = this.y + b;
             alert("Ganaste...!");
         }
-    }
+    },
 
-    exitMaze() {
+    exitMaze: function() {
         let timer = setInterval( () => {
             let px = this.x;
             let py = this.y;
@@ -96,70 +148,35 @@ class Player {
 
 
     }
-}
+};  
 
-class Maze{
+var mazeInterface = {
 
-    constructor (matrix) {
-        this.width = null;
-        this.height = null;
-        this.startX = null;
-        this.startY = null;
-        this.endX = null;
-        this.endY = null;
-        this.startOrientation = null;
-
-        this.matrix = matrix;
-        this.width = matrix.length;
-        this.height = matrix[0].length;
-    }
-
-    isWall (x, y) {
-        return this.matrix[x][y] == "*";
-    }
-    isSpace (x, y) {
-        return this.matrix[x][y] == "_";
-    }
-    isEnd (x, y) {
-        return x == this.endX && y == this.endY;
-    }
-    isInBounds (x, y) {
-        return x > 0 && x <= this.width && y > 0 && y <= this.height;
-    }
-
-}
-
-const StyleEnum = {
-    LEFT: "left",
-    UP: "up",
-    RIGHT: "right",
-    DOWN: "down",
-    EMPTY: "space",
-    BLOCK: "block"
-};
-
-class MazeInterface{
-    constructor (player, maze){
+    init : function (player, maze){
         this.player =  player;
         this.maze = maze;
         this.domMatrix = [];
+        $("#start").on("click", () => {
+            this.renderMaze();
+        });
+
         document.getElementById("start").onclick = () => {
             this.renderMaze();
         };
         document.getElementById("left").onclick = () => {
-            this.player.turnLeft();
+             this.player.turnLeft();
         };
         document.getElementById("right").onclick = () => {
-            this.player.turnRight();
+             this.player.turnRight();
         };
         document.getElementById("move").onclick = () => {
-            this.player.move();
+             this.player.moveForward();
         };
         document.getElementById("exit").onclick = () => {
-            this.player.exitMaze();
+             this.player.exitMaze();
         };
 
-        document.addEventListener("keydown", (e) => {
+        $(document).on("keydown", (e) => {
             switch(e.keyCode) {
                 case 37: // left
                     this.moveForward(0, -1, StyleEnum.LEFT);
@@ -175,20 +192,21 @@ class MazeInterface{
                     break;
             }
         });
-    }
+    },
 
-    moveForward(a, b, direction) {
+    moveForward: function (a, b, direction) {
         this.player.moveForward(a, b, direction);
-    }
+    },
 
-    setStyleAt (x, y, style) {
+    setStyleAt: function (x, y, style) {
         let cellElement = this.domMatrix[x][y];
         cellElement.setAttribute('class', style);
-    }
-    renderMaze () {
+    },
+
+    renderMaze: function () {
         let map = this.maze.matrix;
-        let divElement = document.getElementById('table_container');
-        divElement.innerHTML = '';
+        let divElement = $('#table_container');
+        divElement.html('');
         let tableElement = document.createElement('table');
 
         this.domMatrix = [];
@@ -219,25 +237,11 @@ class MazeInterface{
             }
             tableElement.appendChild(rowElement);
         }
-        divElement.appendChild(tableElement);
+        divElement.append(tableElement);
     }
 }
 
-const mazeMap = [
-    "******************",
-    "*_________*______*",
-    "*_*****_____******",
-    "*______***__*__*_*",
-    "***_*____*____**_*",
-    "*___*____**__*___*",
-    "*_********__**_*_*",
-    "*____*______*__*_*",
-    "*_**_*__*****_**_*",
-    "*o*__*________**W*",
-    "******************"
-];
-let maze = new Maze(mazeMap) ;
-let player = new Player(maze);
-let mazeInterface = new MazeInterface (player, maze);
-player.setInterface(mazeInterface);
+maze.init(mazeMap) ;
+player.init (maze, mazeInterface);
+ mazeInterface.init (player, maze);
 mazeInterface.renderMaze () ;

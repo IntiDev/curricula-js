@@ -24,11 +24,11 @@ for (var i = 0; i < cardArray.length; i++) {
 
       temp = (temp % 10) + parseInt(temp/10);
     }
-    
+
     total += temp;
-    
+
   } else{
-    
+
     total += cardArray[i];
   }
 

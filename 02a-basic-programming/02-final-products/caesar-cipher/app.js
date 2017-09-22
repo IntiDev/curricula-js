@@ -16,14 +16,14 @@ for (var i = 0; i < word.length; i++) {
 
   var temp = word.charAt(i);
   var asciiTemp = temp.charCodeAt();
-  
+
   if(asciiTemp !== 32){
-  
+
     var cipherLetter = String.fromCharCode((asciiTemp - 65 + 33) % 26 + 65);
     cipherWord += cipherLetter;
-    
+
   }else{
-    
+
     cipherWord += ' ';
   }
 }
